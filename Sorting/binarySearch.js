@@ -1,5 +1,6 @@
 //inputs sorted array and number, outputs index of number in array or prints failure message (if number is not in array)
 //the binary search makes guess at the index position of the number in the array.
+//note: if the number is repeated in the array, it will only output 1 index of the number.
 
 function binarySearch(arr, num) {
   var maxIndex = arr.length;
