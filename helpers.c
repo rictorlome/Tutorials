@@ -19,36 +19,34 @@
  */
 bool search(int value, int values[], int n)
 {
-    if (n < 0)
+    if (n <= 0)
     {
         return false;
     }
-    else
+    sort(values, n);
+    int max_index = n-1;
+    int min_index = 0;
+    int guess_index;
+    int guess;
+    while (max_index != min_index + 1)
     {
-        sort(values, n);
-        int max_index = n-1;
-        int min_index = 0;
-        int guess_index;
-        int guess;
-        while (max_index != min_index + 1)
+        guess_index = floor((max_index+min_index)/2);
+        guess = values[guess_index];
+        if (value == guess)
         {
-            guess_index = floor((max_index+min_index)/2);
-            guess = values[guess_index];
-            if (value == guess)
-            {
-                return true;
-            }
-            else if (guess > value)
-            {
-                max_index = guess_index;
-            }
-            else if (guess < value)
-            {
-                min_index = guess_index;
-            }
+            return true;
         }
-        return false;
+        else if (guess > value)
+        {
+            max_index = guess_index;
+        }
+        else if (guess < value)
+        {
+            min_index = guess_index;
+        }
     }
+    return false;
+
 }
 
 /**
@@ -61,7 +59,7 @@ void sort(int values[], int n)
     while (did_swap == true)
     {
         did_swap = false;
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n-1; i++)
         {
             if (values[i] > values[i+1])
             {
